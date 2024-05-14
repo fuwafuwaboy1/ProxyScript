@@ -1,27 +1,6 @@
 const net = require('net');
 const http = require('http');
 const url = require('url');
-const { spawn } = require('child_process');
-
-// Function to start the SSH tunnel
-function startSshTunnel() {
-  const sshProcess = spawn('ssh', ['-R', '0:localhost:2560', 'serveo.net']);
-
-  sshProcess.stdout.on('data', (data) => {
-    console.log(`SSH Tunnel Output: ${data}`);
-  });
-
-  sshProcess.stderr.on('data', (data) => {
-    console.error(`SSH Tunnel Error: ${data}`);
-  });
-
-  sshProcess.on('close', (code) => {
-    console.log(`SSH Tunnel process exited with code ${code}`);
-  });
-}
-
-// Start the SSH tunnel
-startSshTunnel();
 
 const proxyServer = http.createServer(httpOptions);
 
